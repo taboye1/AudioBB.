@@ -5,11 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class BookForAll : ViewModel() {
-
     private val myBook : MutableLiveData<Book> by lazy {
         MutableLiveData<Book>()
     }
-
     private var empty: Boolean = true
 
     fun getBook() : LiveData<Book> {
