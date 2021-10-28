@@ -15,7 +15,6 @@ class BookListFragment : Fragment() { private lateinit var recyclerView: Recycle
     private lateinit var bList: BookList
     private lateinit var bModel: BookForAll
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -29,18 +28,14 @@ class BookListFragment : Fragment() { private lateinit var recyclerView: Recycle
         val layout = inflater.inflate(R.layout.fragment_book_list, container, false)
 
         bModel = ViewModelProvider(requireActivity()).get(BookForAll::class.java)
-
         recyclerView = layout.findViewById(R.id.bookListRView)
-
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         val adapter = BooksAdapter(bList) { position ->
             onClick(position)
         }
         recyclerView.adapter = adapter
-
         return layout
     }
-
     private fun onClick(position: Int) {
         (activity as MyInterface).bookSelected()
         bModel.setBook(bList.get(position))
@@ -54,7 +49,6 @@ class BookListFragment : Fragment() { private lateinit var recyclerView: Recycle
                 }
             }
     }
-
     interface MyInterface {
         fun bookSelected()
     }
