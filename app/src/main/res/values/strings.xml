@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">AudioBB</string>
+    <string name="textview">TextView</string>
+
+    <string-array name="BookTitles">
+        <item>Divine Comedy</item>
+        <item>Utopia</item>
+        <item>Anna Karenina</item>
+        <item>Hamlet</item>
+        <item>In Cold Blood</item>
+        <item>The Stand</item>
+        <item>The Crucible</item>
+        <item>Beloved</item>
+        <item>The Waste Land</item>
+        <item>Invisible Man</item>
+    </string-array>
+
+    <string-array name="BookAuthors">
+        <item>Dante</item>
+        <item>Sir Thomas Moor</item>
+        <item>Leo Tolstoy</item>
+        <item>William Shakespeare</item>
+        <item>Truman Capote</item>
+        <item>Stephen King</item>
+        <item>Arthur Miller</item>
+        <item>Tony Morrison</item>
+        <item>T.S. Eliot</item>
+        <item>Ralph Ellison</item>
+    </string-array>
+</resources>
