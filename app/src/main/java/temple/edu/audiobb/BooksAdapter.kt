@@ -18,12 +18,10 @@ class BooksAdapter(private val bList: BookList, private val onClick : (position:
             }
         }
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.book_list_adapter, parent, false)
         return ViewHolder(view, onClick)
     }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.titleTextView.text = bList.get(position).title
         holder.authorTextView.text = bList.get(position).author
