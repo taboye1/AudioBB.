@@ -35,7 +35,7 @@ class BookSearchActivity : AppCompatActivity() {
         button.setOnClickListener {
             startSearch()
             queue.addRequestFinishedListener<JsonArrayRequest> {
-                if (bList.size() == 0) { // Display no matches found on recycler view if list is empty.
+                if (bList.size() == 0) { 
                     bList.add(Book(0, getString(R.string.can_not_found), "", ""))
                     setResult(RESULT_OK, Intent().putExtra(RESULTS, bList))
                 } else
@@ -49,9 +49,7 @@ class BookSearchActivity : AppCompatActivity() {
         private fun startSearch() {
             val url = Url + searchTools.text
 
-            val arrayRequest = JsonArrayRequest(Request.Method.GET, url,
-                null,
-                {
+            val arrayRequest = JsonArrayRequest(Request.Method.GET, url, null,{
                     try {
                         for (i in 0 until it.length()) {
                             val bookData = it.getJSONObject(i)
