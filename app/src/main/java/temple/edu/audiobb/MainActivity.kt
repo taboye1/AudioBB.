@@ -6,7 +6,6 @@ import android.view.View
 import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : AppCompatActivity(), BookListFragment.MyInterface  {
-
     private var twoPane : Boolean = false
     lateinit var bookView: BookForAll
     private var bList = BookList()

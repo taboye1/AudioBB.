@@ -22,8 +22,7 @@ class BooksAdapter(private var bList: BookList, private val onClick : (position:
             itemView.setOnClickListener {
                 onClick(adapterPosition)
                 }
-            }
-        }
+            } }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.book_list_adapter, parent, false)
