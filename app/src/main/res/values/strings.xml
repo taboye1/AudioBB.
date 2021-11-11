@@ -27,4 +27,13 @@
         <item>T.S. Eliot</item>
         <item>Ralph Ellison</item>
     </string-array>
+
+    <string name="book_cover">book cover .</string>
+    <string name="book_search">Book Search</string>
+    <string name="exit">Exit</string>
+    <string name="search">Search</string>
+    <string name="search_here">Search here</string>
+    <string name="search_books">Search here</string>
+    <string name="can_not_found">No related items</string>
+    <string name="id_num">ID: </string>
 </resources>
