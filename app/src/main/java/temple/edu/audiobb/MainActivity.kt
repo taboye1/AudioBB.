@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity(), BookListFragment.MyInterface  {
         twoPane = findViewById<View>(R.id.container2) != null
         bookView = ViewModelProvider(this).get(BookForAll::class.java)
 
-        bList.add(Book(0, "", "", ""))
+        bList.add(Book(0, "", "", "", 0))
         //val booksList = BookList()
         //showedBooks(booksList)
 
@@ -77,6 +77,6 @@ class MainActivity : AppCompatActivity(), BookListFragment.MyInterface  {
     override fun onBackPressed() {
         super.onBackPressed()
         //ViewModelProvider(this).get(BookForAll::class.java).setBook(Book("", ""))
-        bookView.setBook(Book(-1,"","",""))
+        bookView.setBook(Book(-1,"","","", -1))
     }
 }

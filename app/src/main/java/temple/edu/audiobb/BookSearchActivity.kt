@@ -36,7 +36,7 @@ class BookSearchActivity : AppCompatActivity() {
             startSearch()
             queue.addRequestFinishedListener<JsonArrayRequest> {
                 if (bList.size() == 0) { 
-                    bList.add(Book(0, getString(R.string.can_not_found), "", ""))
+                    bList.add(Book(0, getString(R.string.can_not_found), "", "",0))
                     setResult(RESULT_OK, Intent().putExtra(RESULTS, bList))
                 } else
                     setResult(RESULT_OK, Intent().putExtra(RESULTS, bList))
@@ -57,7 +57,8 @@ class BookSearchActivity : AppCompatActivity() {
                             val title = bookData.getString("title")
                             val author = bookData.getString("author")
                             val coverURL = bookData.getString("cover_url")
-                            val book = Book(id, title, author, coverURL)
+                            val duration = bookData.getString("duration").toInt()
+                            val book = Book(id, title, author, coverURL,duration)
                             bList.add(book) }
                     } catch (e: JSONException) {
                     } },

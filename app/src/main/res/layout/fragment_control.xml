@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ControlFragment">
+
+    <TextView
+        android:id="@+id/nowPlayingTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/pauseButton"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nowPlayingTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_pause_24"
+        tools:layout_editor_absoluteX="315dp"
+        tools:layout_editor_absoluteY="204dp" />
+
+    <ImageButton
+        android:id="@+id/playButton"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/nowPlayingTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_play_arrow_24"
+        tools:layout_editor_absoluteX="83dp"
+        tools:layout_editor_absoluteY="197dp" />
+
+    <ImageButton
+        android:id="@+id/stopButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/nowPlayingTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_stop_24"
+        tools:layout_editor_absoluteX="203dp"
+        tools:layout_editor_absoluteY="74dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".334" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".667" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:max="100"
+        tools:layout_editor_absoluteX="186dp"
+        tools:layout_editor_absoluteY="563dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

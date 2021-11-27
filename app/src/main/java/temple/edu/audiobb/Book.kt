@@ -6,5 +6,6 @@ data class Book (
     val id: Int,
     val title: String,
     val author: String,
-    val coverUrl: String):Serializable{
+    val coverUrl: String,
+    val duration:Int):Serializable{
 }
