@@ -1,75 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ControlFragment">
 
     <TextView
-        android:id="@+id/nowPlayingTextView"
+        android:id="@+id/durationText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/pauseButton"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nowPlayingTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/baseline_pause_24"
-        tools:layout_editor_absoluteX="315dp"
-        tools:layout_editor_absoluteY="204dp" />
-
-    <ImageButton
-        android:id="@+id/playButton"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/nowPlayingTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/baseline_play_arrow_24"
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="197dp" />
-
-    <ImageButton
-        android:id="@+id/stopButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/nowPlayingTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/baseline_stop_24"
-        tools:layout_editor_absoluteX="203dp"
-        tools:layout_editor_absoluteY="74dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent=".334" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent=".667" />
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="4dp"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@id/titleText"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <SeekBar
-        android:id="@+id/seekBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playButton"
-        android:layout_width="0dp"
+        android:id="@+id/durationBar"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="20dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/titleText"
+        app:layout_constraintEnd_toStartOf="@id/durationText"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:max="100"
-        tools:layout_editor_absoluteX="186dp"
-        tools:layout_editor_absoluteY="563dp" />
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="3dp"
+        android:text="Play Now:"
+        android:textColor="@color/teal_200"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/pauseBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="-5dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:textAlignment="center"
+        app:icon="@android:drawable/ic_media_pause"
+        app:iconGravity="textEnd"
+        app:iconSize="20dp"
+        app:layout_constraintBottom_toTopOf="@id/durationBar"
+        app:layout_constraintEnd_toStartOf="@+id/playBtn"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/playBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="-5dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="15dp"
+        android:textAlignment="center"
+        app:icon="@android:drawable/ic_media_play"
+        app:iconGravity="textEnd"
+        app:iconSize="20dp"
+        app:layout_constraintBottom_toTopOf="@id/durationBar"
+        app:layout_constraintEnd_toStartOf="@+id/stopBtn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/stopBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="-5dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="15dp"
+        android:textAlignment="center"
+        app:icon="?android:attr/textCursorDrawable"
+        app:iconGravity="textEnd"
+        app:iconSize="15dp"
+        app:layout_constraintBottom_toTopOf="@id/durationText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="SpeakableTextPresentCheck" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
