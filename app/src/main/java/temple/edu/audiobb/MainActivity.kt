@@ -42,7 +42,6 @@ class MainActivity : AppCompatActivity(), BookListFragment.MyInterface,ControlFr
             controlBinder = service as PlayerService.MediaControlBinder
             controlBinder.setProgressHandler(progressHandler)
         }
-
         override fun onServiceDisconnected(name: ComponentName?) {
             connection = false
         }
@@ -65,7 +64,6 @@ class MainActivity : AppCompatActivity(), BookListFragment.MyInterface,ControlFr
     private val bookForAllModel : BookList by lazy {
         ViewModelProvider(this).get(BookList::class.java)
     }
-
     companion object {
         const val BOOK_FRAGMT_KEY = "BListFragment"
     }
