@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class SelectedBookForAll :ViewModel() {
+
     private val book: MutableLiveData<Book> by lazy {
         MutableLiveData()
     }
