@@ -26,14 +26,16 @@ class BookDetailsFragment : Fragment() {
         titleTextView = view.findViewById(R.id.titleTextView)
         authorTextView =  view.findViewById(R.id.authorTextView)
         bookCover = view.findViewById(R.id.coverImageView)
+
         ViewModelProvider(requireActivity()).get(BookForAll::class.java).getBook()
             .observe(requireActivity()) { reviewBDetails(it)
             }
     }
-    private fun reviewBDetails(_book: Book) {
-        titleTextView.text = _book.title
-        authorTextView.text = _book.author
-        Picasso.get().load(_book.coverUrl).into(bookCover)
+    private fun reviewBDetails(book: Book) {
+        titleTextView.text = book.title
+        authorTextView.text = book.author
+        if (book.coverUrl.isNotEmpty())
+        Picasso.get().load(book.coverUrl).into(bookCover)
         //view?.findViewById<TextView>(R.id.titleTextView)?.text = _book.title
         //view?.findViewById<TextView>(R.id.authorTextView)?.text = _book.author
     }

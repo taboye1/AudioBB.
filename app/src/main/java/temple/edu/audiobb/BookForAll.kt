@@ -6,18 +6,18 @@ import androidx.lifecycle.ViewModel
 
 class BookForAll : ViewModel() {
 
-    private val myBook : MutableLiveData<Book> by lazy {
+    private val book : MutableLiveData<Book> by lazy {
         MutableLiveData<Book>()
     }
 
     private var empty: Boolean = true
 
     fun getBook() : LiveData<Book> {
-        return myBook
+        return book
     }
 
     fun setBook(book: Book) {
-        this.myBook.value = book
+        this.book.value = book
         empty = false
     }
 

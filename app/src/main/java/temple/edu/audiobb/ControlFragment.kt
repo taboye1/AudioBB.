@@ -43,11 +43,11 @@ class ControlFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val bookViewModel = ViewModelProvider(requireActivity()).get(BookForAll::class.java)
+        val SelectedBookForAll = ViewModelProvider(requireActivity()).get(SelectedBookForAll::class.java)
         play.setOnClickListener {
-            val selectedBook = bookViewModel.getBook().value
+            val selectedBook = SelectedBookForAll.getSelectedBook().value
             if(selectedBook != null){
-                titleText.text = " Play Now -- " + selectedBook.title
+                titleText.text = selectedBook.title
                 seekBar.max = selectedBook.duration
             }
             (activity as ControlInterface).playClick(initialTime)
@@ -59,7 +59,7 @@ class ControlFragment : Fragment() {
         }
 
         pause.setOnClickListener {
-            val selectedBook = bookViewModel.getBook().value
+            val selectedBook = SelectedBookForAll.getSelectedBook().value
             if (selectedBook != null){
                 initialTime = seekBar.progress
             }
@@ -68,18 +68,18 @@ class ControlFragment : Fragment() {
 
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(sBar: SeekBar, progress: Int, parent: Boolean) {
-                val selectedBook = bookViewModel.getBook().value
+                val selectedBook = SelectedBookForAll.getSelectedBook().value
                 if(selectedBook != null){
                     nowPlayingTView.text = progress.toString()
                 }
             }
 
-            override fun onStartTrackingTouch(sBar: SeekBar?) {
+            override fun onStartTrackingTouch(p0: SeekBar?) {
                 (activity as ControlInterface).pauseClick()
             }
 
-            override fun onStopTrackingTouch(sBar: SeekBar?) {
-                val selectedBook = bookViewModel.getBook().value
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+                val selectedBook = SelectedBookForAll.getSelectedBook().value
                 if(selectedBook != null){
                     initialTime = seekBar.progress
                     nowPlayingTView.text = initialTime.toString()
@@ -93,7 +93,7 @@ class ControlFragment : Fragment() {
         fun playClick(durationTime: Int)
         fun pauseClick()
         fun stopClick()
-        fun changePosition(progress: Int)
+        fun seekClick()
     }
 
 }

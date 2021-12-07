@@ -13,75 +13,52 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-private const val ARG_PARAM1 = "Book for All"
-private const val BOOK_LIST = "edu.temple.audiobb.BookListFragment.BOOK_LIST"
+private const val ARG_PARAM1 = "edu.temple.audiobb.BookListFragment.BOOK_LIST"
+private const val BOOK_LIST = "Book for All"
 
-class BookListFragment : Fragment() { private lateinit var recyclerView: RecyclerView
-    private lateinit var bList: BookList
-    private lateinit var bModel: BookForAll
-    private lateinit var adapter: BooksAdapter
+class BookListFragment : Fragment() {
 
-    private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        if(it.resultCode == AppCompatActivity.RESULT_OK) {
-            bList = it.data?.getSerializableExtra(RESULTS) as BookList
-            adapter.updateList(bList)
-        }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            bList = if (savedInstanceState == null) {
-                it.getSerializable(ARG_PARAM1) as BookList
-            } else {
-                savedInstanceState.getSerializable(BOOK_LIST) as BookList
-            }
-        }
-
+    private val bookList: BookList by lazy {
+      ViewModelProvider(requireActivity()).get(BookList::class.java)
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val layout = inflater.inflate(R.layout.fragment_book_list, container, false)
+        return inflater.inflate(R.layout.fragment_book_list, container, false)
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        val launchSearchButton = layout.findViewById<Button>(R.id.launchSButton)
-        launchSearchButton.setOnClickListener {
-            val intent = Intent(requireContext(), BookSearchActivity::class.java)
-            launcher.launch(intent)
+        val bookForAllModel = ViewModelProvider(requireActivity()).get(SelectedBookForAll::class.java)
+
+        val onClick : (Book) -> Unit = {
+                book: Book -> bookForAllModel.setSelectedBook(book)
+            (activity as MyInterface).bookSelected(book)
         }
-        bModel = ViewModelProvider(requireActivity()).get(BookForAll::class.java)
-
-        recyclerView = layout.findViewById(R.id.bookListRView)
-
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = BooksAdapter(bList) { position ->
-            onClick(position)
+        with (view as RecyclerView) {
+            layoutManager = LinearLayoutManager(requireActivity())
+            adapter = BooksAdapter (bookList, onClick)
         }
-        recyclerView.adapter = adapter
-
-        return layout
     }
 
-    private fun onClick(position: Int) {
-        (activity as MyInterface).bookSelected()
-        bModel.setBook(bList.get(position))
+    fun bookListUpdate() {
+        view?.apply {
+           (this as RecyclerView).adapter?.notifyDataSetChanged()
+       }
     }
     companion object {
         @JvmStatic
-        fun newInstance(bList: BookList) =
+        fun newInstance(bookList: BookList) =
             BookListFragment().apply {
                 arguments = Bundle().apply {
-                    putSerializable(ARG_PARAM1, bList)
+                    putSerializable(BOOK_LIST, bookList)
                 }
             }
     }
 
     interface MyInterface {
-        fun bookSelected()
+        fun bookSelected(book:Book)
     }
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putSerializable(BOOK_LIST, bList)
+
     }
-}
